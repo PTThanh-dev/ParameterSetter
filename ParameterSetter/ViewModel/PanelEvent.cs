@@ -10,12 +10,17 @@ using System.Windows.Input;
 
 namespace ParameterSetter.ViewModel
 {
-    class PanelEvent: ViewModelBase
+    class PanelEvent : ViewModelBase
     {
-        
+
         public string WindowTitle { get; private set; }
         public static List<ElementId> SelectedElementsIds;
-        
+
+        private static string _MarkText;
+        public static string MarkText { get => _MarkText; set { _MarkText = value;  } }
+        private static string _CommentsText;
+        public static string CommentsText { get => _CommentsText; set { _CommentsText = value;} }
+
         private Tuple<string, int, List<Model.RvtElementInfo>> _selectedRvtCategory;
         public Tuple<string, int, List<Model.RvtElementInfo>> SelectedRvtCategory
         {
@@ -44,21 +49,21 @@ namespace ParameterSetter.ViewModel
         public static ExternalEvent ApplyEvent { get; set; }
         public static ExternalEvent UpdateSelection { get; set; }
 
-        ObservableCollection<FieldViewModel> _fields;
-        public ObservableCollection<FieldViewModel> Fields
-        {
-            get { return _fields; }
-            set { SetField(ref _fields, value, "Fields"); }            
-        }
+        //ObservableCollection<FieldViewModel> _fields;
+        //public ObservableCollection<FieldViewModel> Fields
+        //{
+        //    get { return _fields; }
+        //    set { SetField(ref _fields, value, "Fields"); }            
+        //}
         public PanelEvent()
         {
-            _fields = new ObservableCollection<FieldViewModel>();
-            _fields.Add(new FieldViewModel(){Caption = "Mark",InputText = ""});
-            _fields.Add(new FieldViewModel() { Caption = "Comments", InputText = "" });
-            _fields.Add(new FieldViewModel() { Caption = "Level", InputText = "" });
+            //_fields = new ObservableCollection<FieldViewModel>();
+            //_fields.Add(new FieldViewModel(){Caption = "Mark",InputText = ""});
+            //_fields.Add(new FieldViewModel() { Caption = "Comments", InputText = "" });
+            //_fields.Add(new FieldViewModel() { Caption = "Level", InputText = "" });
 
             SelectedElementsIds = new List<ElementId>();
-            _suscribed = false; 
+            _suscribed = false;
             if (ExEvent != null)
             {
                 //ExEvent.Raise();
@@ -113,7 +118,7 @@ namespace ParameterSetter.ViewModel
                 Debug.Print("*************Subscribe****************");
                 Subscribed = true;
             }
-            
+
         }
 
         // boiler-plate for INOtifyPropertyChnged

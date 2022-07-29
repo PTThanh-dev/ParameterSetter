@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ParameterSetter.Model
@@ -35,8 +36,8 @@ namespace ParameterSetter.Model
                 t.Start();
                 foreach (ElementId eid in ViewModel.PanelEvent.SelectedElementsIds)
                 {
-                    //Parameter p = doc.GetElement(eid).LookupParameter();
-                    //p.Set(myform.paramValue.Text);
+                 doc.GetElement(eid).LookupParameter("Mark").Set(ViewModel.PanelEvent.MarkText);
+                    doc.GetElement(eid).LookupParameter("Comments").Set(ViewModel.PanelEvent.CommentsText);
                 }
                 t.Commit();
                 //TaskDialog.Show("R", Command.SelectedElements.Count.ToString());
